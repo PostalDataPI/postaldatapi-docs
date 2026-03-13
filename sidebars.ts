@@ -30,6 +30,8 @@ const sidebars: SidebarsConfig = {
       items: [
         'guides/country-codes',
         'guides/error-handling',
+        'guides/python-tutorial',
+        'guides/node-tutorial',
       ],
       collapsed: false,
     },
