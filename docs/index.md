@@ -11,7 +11,7 @@ PostalDataPI is a global postal code API covering 70+ countries with sub-10ms re
 ## Why PostalDataPI?
 
 - **Global coverage** -- 70+ countries, from the US to Japan to Germany
-- **Fast** -- Sub-10ms responses powered by in-memory caching
+- **Fast** -- Sub-10ms response times
 - **Simple** -- One flat rate ($0.000028/query), no tiers, no surprises
 - **Free to start** -- 1,000 queries free, no credit card required
 - **Official SDKs** -- Python and Node.js clients available

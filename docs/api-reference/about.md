@@ -27,10 +27,10 @@ Content-Type: application/json
 
 ```json
 {
-  "About": "Zip Data API provides US ZIP code lookup, city/state search, and metadata endpoints with Lightning Cache performance.",
-  "version": "2.0.0-LC (Lightning Cache)",
-  "coverage": "All US ZIP codes, city/state mappings, and metadata served from memory at <1ms response times.",
-  "usage": "See docs for authentication, rate limits, and endpoint usage. Now powered by Lightning Cache for sub-10ms API responses.",
+  "About": "PostalDataPI provides postal code lookup, validation, city search, and metadata endpoints for 70+ countries.",
+  "version": "2.0.0",
+  "coverage": "70+ countries with sub-10ms response times. US ZIP codes, UK postcodes, German PLZ, and more.",
+  "usage": "See docs.postaldatapi.com for authentication, rate limits, and endpoint usage.",
   "performance": { "totalTime": "1ms" },
   "balance": 4.99
 }
