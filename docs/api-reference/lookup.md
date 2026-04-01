@@ -60,9 +60,27 @@ Content-Type: application/json
 | `rateLimit` | `object` | Current rate limit status |
 | `balance` | `number` | Account balance after this query (USD) |
 
-### Non-US Example
+### cURL Examples
 
 ```bash
+# US ZIP code
+curl -X POST https://postaldatapi.com/api/lookup \
+  -H "Content-Type: application/json" \
+  -d '{"zipcode": "90210", "apiKey": "YOUR_API_KEY"}'
+```
+
+```json
+{
+  "city": "Beverly Hills",
+  "state": "California",
+  "ST": "CA",
+  "performance": { "totalTime": "2ms" },
+  "balance": 4.99
+}
+```
+
+```bash
+# German PLZ
 curl -X POST https://postaldatapi.com/api/lookup \
   -H "Content-Type: application/json" \
   -d '{"zipcode": "10115", "country": "DE", "apiKey": "YOUR_API_KEY"}'
@@ -73,6 +91,21 @@ curl -X POST https://postaldatapi.com/api/lookup \
   "city": "Berlin",
   "state": "Berlin",
   "ST": "BE",
+  "performance": { "totalTime": "1ms" },
+  "balance": 4.99
+}
+```
+
+```bash
+# Japanese postal code
+curl -X POST https://postaldatapi.com/api/lookup \
+  -H "Content-Type: application/json" \
+  -d '{"zipcode": "100-0001", "country": "JP", "apiKey": "YOUR_API_KEY"}'
+```
+
+```json
+{
+  "city": "Chiyoda",
   "performance": { "totalTime": "1ms" },
   "balance": 4.99
 }
