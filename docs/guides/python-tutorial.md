@@ -37,7 +37,7 @@ print(f"{result.city}, {result.state_abbreviation}")
 
 ## International Lookups
 
-Pass the `country` parameter with an ISO 3166-1 alpha-2 code. The same API key works for all 70+ countries.
+Pass the `country` parameter with an ISO 3166-1 alpha-2 code. The same API key works for all 240+ countries and territories.
 
 ```python
 # German PLZ

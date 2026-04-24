@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'PostalDataPI',
-  tagline: 'Global postal code API with sub-10ms response times',
+  tagline: 'Global postal code API for 240+ countries and territories with sub-5ms response times',
   favicon: 'img/favicon.ico',
 
   future: {

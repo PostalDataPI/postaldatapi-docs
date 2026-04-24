@@ -6,7 +6,7 @@ slug: /guides/country-codes
 
 # Country Codes
 
-PostalDataPI supports 70+ countries. Pass the ISO 3166-1 alpha-2 country code in the `country` parameter. If omitted, `country` defaults to `"US"`.
+PostalDataPI supports 240+ countries and territories. Pass the ISO 3166-1 alpha-2 country code in the `country` parameter. If omitted, `country` defaults to `"US"`.
 
 Country codes are **case-insensitive** -- `"DE"`, `"de"`, and `"De"` all work.
 

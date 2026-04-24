@@ -39,7 +39,7 @@ console.log(`${result.city}, ${result.stateAbbreviation}`);
 
 ## International Lookups
 
-Pass the `country` option with an ISO 3166-1 alpha-2 code. The same API key works for all 70+ countries.
+Pass the `country` option with an ISO 3166-1 alpha-2 code. The same API key works for all 240+ countries and territories.
 
 ```typescript
 // German PLZ

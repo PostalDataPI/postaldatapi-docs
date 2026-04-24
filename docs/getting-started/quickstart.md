@@ -84,7 +84,7 @@ Install with `npm install postaldatapi`.
 
 ## 4. Try Other Countries
 
-PostalDataPI supports 70+ countries. Pass a `country` parameter with any ISO 3166-1 alpha-2 code:
+PostalDataPI supports 240+ countries and territories. Pass a `country` parameter with any ISO 3166-1 alpha-2 code:
 
 <Tabs>
 <TabItem value="curl" label="cURL">
