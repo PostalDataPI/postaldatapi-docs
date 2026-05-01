@@ -32,6 +32,8 @@ Content-Type: application/json
   "city": "Beverly Hills",
   "state": "California",
   "ST": "CA",
+  "latitude": 34.1031,
+  "longitude": -118.4163,
   "performance": {
     "authTime": "0ms",
     "rateLimitCheckTime": "0ms",
@@ -56,6 +58,8 @@ Content-Type: application/json
 | `city` | `string` | City or place name |
 | `state` | `string` | Full state/region name |
 | `ST` | `string` | State/region abbreviation |
+| `latitude` | `number` | Latitude coordinate |
+| `longitude` | `number` | Longitude coordinate |
 | `performance` | `object` | Timing breakdown for the request |
 | `rateLimit` | `object` | Current rate limit status |
 | `balance` | `number` | Account balance after this query (USD) |
@@ -74,6 +78,8 @@ curl -X POST https://postaldatapi.com/api/lookup \
   "city": "Beverly Hills",
   "state": "California",
   "ST": "CA",
+  "latitude": 34.1031,
+  "longitude": -118.4163,
   "performance": { "totalTime": "2ms" },
   "balance": 4.99
 }
@@ -91,6 +97,8 @@ curl -X POST https://postaldatapi.com/api/lookup \
   "city": "Berlin",
   "state": "Berlin",
   "ST": "BE",
+  "latitude": 52.532,
+  "longitude": 13.3879,
   "performance": { "totalTime": "1ms" },
   "balance": 4.99
 }

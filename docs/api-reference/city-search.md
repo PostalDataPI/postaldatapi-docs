@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: City Search
 slug: /api-reference/city-search
 ---

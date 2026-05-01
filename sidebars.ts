@@ -18,6 +18,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'api-reference/lookup',
         'api-reference/validate',
+        'api-reference/bulk-validate',
         'api-reference/city-search',
         'api-reference/metazip',
         'api-reference/about',
