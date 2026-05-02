@@ -95,14 +95,18 @@ curl -X POST https://postaldatapi.com/api/lookup \
 ```json
 {
   "city": "Berlin",
-  "state": "Berlin",
-  "ST": "BE",
-  "latitude": 52.532,
-  "longitude": 13.3879,
+  "state": "",
+  "ST": "",
+  "latitude": 52.5323,
+  "longitude": 13.3846,
   "performance": { "totalTime": "1ms" },
   "balance": 4.99
 }
 ```
+
+:::note
+For non-US postal codes, `/api/lookup` returns `city`, `latitude`, and `longitude` only. The `state` and `ST` fields are returned but empty (`""`) for non-US records — administrative-region data lives in [`/api/metazip`](./metazip), which surfaces a multi-level `admin_name1` / `admin_code1` / `admin_name2` / etc. schema for non-US records.
+:::
 
 ```bash
 # Japanese postal code
@@ -114,6 +118,10 @@ curl -X POST https://postaldatapi.com/api/lookup \
 ```json
 {
   "city": "Chiyoda",
+  "state": "",
+  "ST": "",
+  "latitude": 35.6841,
+  "longitude": 139.7521,
   "performance": { "totalTime": "1ms" },
   "balance": 4.99
 }

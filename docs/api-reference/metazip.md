@@ -44,7 +44,7 @@ Content-Type: application/json
 }
 ```
 
-### Non-US Example (200)
+### Non-US Example — Germany (200)
 
 ```json
 {
@@ -52,10 +52,37 @@ Content-Type: application/json
     "postalCode": "10115",
     "country": "DE",
     "placeName": "Berlin",
-    "latitude": 52.532,
-    "longitude": 13.3879,
-    "adminLevel1": "Berlin",
-    "adminLevel1Code": "BE"
+    "latitude": 52.5323,
+    "longitude": 13.3846,
+    "timezone": "Europe/Berlin",
+    "admin_name1": "Berlin",
+    "admin_code1": "BE",
+    "admin_code2": "00",
+    "admin_name3": "Berlin, Stadt",
+    "admin_code3": "11000",
+    "elevation": 34
+  },
+  "performance": { "totalTime": "1ms" },
+  "balance": 4.99
+}
+```
+
+### Non-US Example — Japan (200)
+
+```json
+{
+  "meta": {
+    "postalCode": "1000001",
+    "country": "JP",
+    "placeName": "Chiyoda",
+    "latitude": 35.6841,
+    "longitude": 139.7521,
+    "timezone": "Asia/Tokyo",
+    "admin_name1": "Tokyo To",
+    "admin_code1": "40",
+    "admin_name2": "Chiyoda Ku",
+    "admin_code2": "1864529",
+    "elevation": 32
   },
   "performance": { "totalTime": "1ms" },
   "balance": 4.99
@@ -64,16 +91,18 @@ Content-Type: application/json
 
 ### Response Fields
 
-The `meta` object contains all available fields for the postal code. Available fields vary by country:
+The `meta` object contains all available fields for the postal code. Available fields vary by country and by data source — not every country returns every field.
 
-**All countries:**
+**Common to most countries:**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `postalCode` or `zipcode` | `string` | The postal code |
-| `placeName` or `city` | `string` | City or place name |
+| `postalCode` (non-US) or `zipcode` (US) | `string` | The postal code |
+| `placeName` (non-US) or `city` (US) | `string` | City or place name |
 | `latitude` | `number` | Latitude coordinate |
 | `longitude` | `number` | Longitude coordinate |
+| `timezone` | `string` | IANA timezone identifier (e.g. `"America/Los_Angeles"`) — returned where the data source provides it |
+| `elevation` | `number` | Elevation in meters above sea level — returned where the data source provides it |
 
 **US-specific fields:**
 
@@ -82,16 +111,20 @@ The `meta` object contains all available fields for the postal code. Available f
 | `state` | `string` | Full state name |
 | `stateAbbrev` | `string` | Two-letter state abbreviation |
 | `county` | `string` | County name |
-| `timezone` | `string` | IANA timezone identifier |
 
-**Non-US fields:**
+**Non-US administrative region fields:**
+
+Non-US records use a multi-level snake_case admin schema. Each country populates the levels it has data for; missing levels are simply omitted from the response.
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `country` | `string` | ISO 3166-1 alpha-2 country code |
-| `adminLevel1` | `string` | Top-level administrative region (state, province, etc.) |
-| `adminLevel1Code` | `string` | Abbreviated code for the administrative region |
-| `adminLevel2` | `string` | Second-level administrative region (if available) |
+| `admin_name1` | `string` | Top-level administrative region (state, prefecture, region, etc.) |
+| `admin_code1` | `string` | Code for level-1 administrative region |
+| `admin_name2` | `string` | Second-level administrative region (county, district, ward, etc.) |
+| `admin_code2` | `string` | Code for level-2 administrative region |
+| `admin_name3` | `string` | Third-level administrative region (municipality, sub-district, etc.) |
+| `admin_code3` | `string` | Code for level-3 administrative region |
 
 :::tip
 The metazip endpoint returns every field available in the data source. As PostalDataPI adds more data sources, additional fields may appear without a breaking API change.
