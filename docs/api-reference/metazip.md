@@ -44,7 +44,38 @@ Content-Type: application/json
 }
 ```
 
-### Non-US Example — Germany (200)
+### Non-US Example — Mexico (200, the "rich" 18-field example)
+
+The richest non-US records currently return up to 18 fields per postal code. Mexico is one such case:
+
+```json
+{
+  "meta": {
+    "postalCode": "06000",
+    "country": "MX",
+    "placeName": "Centro (Área 1)",
+    "latitude": 19.4364,
+    "longitude": -99.1553,
+    "adminLevel1": "Ciudad de México",
+    "adminLevel2": "Cuauhtémoc",
+    "timezone": "America/Mexico_City",
+    "admin_name1": "Distrito Federal",
+    "admin_code1": "09",
+    "admin_name2": "Cuauhtémoc",
+    "admin_code2": "015",
+    "admin_name3": "Ciudad de México",
+    "admin_code3": "06",
+    "elevation": 2239,
+    "state": "Ciudad de México",
+    "municipality": "Cuauhtémoc",
+    "city": "Ciudad de México"
+  },
+  "performance": { "totalTime": "1ms" },
+  "balance": 4.99
+}
+```
+
+### Non-US Example — Germany (200, a more typical 12-field example)
 
 ```json
 {
@@ -89,6 +120,10 @@ Content-Type: application/json
 }
 ```
 
+:::tip
+**Field count varies by country.** Mexico and a handful of other rich-schema countries currently return up to 18 fields per postal code. Most countries return 10-13. PostalDataPI returns *every populated field for that record* — missing fields are simply omitted, not nulled.
+:::
+
 ### Response Fields
 
 The `meta` object contains all available fields for the postal code. Available fields vary by country and by data source — not every country returns every field.
@@ -125,6 +160,18 @@ Non-US records use a multi-level snake_case admin schema. Each country populates
 | `admin_code2` | `string` | Code for level-2 administrative region |
 | `admin_name3` | `string` | Third-level administrative region (municipality, sub-district, etc.) |
 | `admin_code3` | `string` | Code for level-3 administrative region |
+
+**Non-US fields available for some rich-schema countries (e.g. Mexico):**
+
+Some countries — Mexico, Brazil, and a handful of others — have richer source data and return additional fields alongside the snake_case schema above:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `adminLevel1` | `string` | Camel-case alias for the top-level region (canonical name; differs from `admin_name1` for some sources) |
+| `adminLevel2` | `string` | Camel-case alias for the second-level region |
+| `state` | `string` | State name (when distinct from `admin_name1`) |
+| `municipality` | `string` | Municipality name |
+| `city` | `string` | City name (when distinct from `placeName`) |
 
 :::tip
 The metazip endpoint returns every field available in the data source. As PostalDataPI adds more data sources, additional fields may appear without a breaking API change.
