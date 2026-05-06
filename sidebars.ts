@@ -33,6 +33,7 @@ const sidebars: SidebarsConfig = {
         'guides/error-handling',
         'guides/python-tutorial',
         'guides/node-tutorial',
+        'guides/keeping-functions-warm',
       ],
       collapsed: false,
     },
