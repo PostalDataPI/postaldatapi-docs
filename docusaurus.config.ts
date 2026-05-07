@@ -65,7 +65,17 @@ const config: Config = {
         },
         {
           href: 'https://postaldatapi.com',
-          label: 'Dashboard',
+          label: 'Main Site',
+          position: 'right',
+        },
+        {
+          href: 'https://postaldatapi.com/demo',
+          label: 'Demo',
+          position: 'right',
+        },
+        {
+          href: 'https://postaldatapi.com/account',
+          label: 'Account Page',
           position: 'right',
         },
       ],
