@@ -105,7 +105,7 @@ curl -X POST https://postaldatapi.com/api/lookup \
 ```
 
 :::note
-For non-US postal codes, `/api/lookup` returns `city`, `latitude`, and `longitude` only. The `state` and `ST` fields are returned but empty (`""`) for non-US records — administrative-region data lives in [`/api/metazip`](./metazip), which surfaces a multi-level `admin_name1` / `admin_code1` / `admin_name2` / etc. schema for non-US records.
+For non-US postal codes, `/api/lookup` returns `city`, `latitude`, and `longitude` only. The `state` and `ST` fields are returned but empty (`""`) for non-US records — administrative-region data lives in [`/api/metacode`](./metacode), which surfaces a multi-level `admin_name1` / `admin_code1` / `admin_name2` / etc. schema for non-US records.
 :::
 
 ```bash

@@ -28,7 +28,7 @@ PostalDataPI is a global postal code API covering 240+ countries and territories
 | [POST /api/lookup](/api-reference/lookup) | Get city and state for a postal code |
 | [POST /api/validate](/api-reference/validate) | Check if a postal code exists |
 | [POST /api/city](/api-reference/city-search) | Find postal codes by city name |
-| [POST /api/metazip](/api-reference/metazip) | Get coordinates, timezone, county, and more |
+| [POST /api/metacode](/api-reference/metacode) | Get coordinates, timezone, county, and more |
 | [POST /api/aboutapi](/api-reference/about) | API version and coverage info |
 
 ## SDKs

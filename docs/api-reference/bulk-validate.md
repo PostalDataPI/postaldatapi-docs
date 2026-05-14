@@ -14,7 +14,7 @@ Validate up to 1,000 postal codes in a single request. Mixed countries supported
 
 ## Field naming note
 
-The bulk endpoint uses **modern field names** — `postalCode` and `countryCode`. The single-record endpoints (`/api/lookup`, `/api/validate`, `/api/city`, `/api/metazip`) preserve the legacy `zipcode` and `country` naming for backward compatibility.
+The bulk endpoint uses **modern field names** — `postalCode` and `countryCode`. The single-record endpoints (`/api/lookup`, `/api/validate`, `/api/city`, `/api/metacode`) preserve the legacy `zipcode` and `country` naming for backward compatibility.
 
 ## Request
 
@@ -176,4 +176,4 @@ console.log(`Balance: $${result.balance.toFixed(6)}`);
 - **Form pre-submission cleanup.** Bulk-validate a CSV of addresses uploaded by a user before kicking off downstream geocoding.
 - **Ongoing address-list maintenance.** Periodic validation of a marketing list to flag entries that have become invalid.
 
-For per-record geographic data (city, coordinates, county, etc.), use [`/api/lookup`](./lookup) or [`/api/metazip`](./metazip) on individual records after bulk validation.
+For per-record geographic data (city, coordinates, county, etc.), use [`/api/lookup`](./lookup) or [`/api/metacode`](./metacode) on individual records after bulk validation.

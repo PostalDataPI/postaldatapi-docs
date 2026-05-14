@@ -1,14 +1,22 @@
 ---
 sidebar_position: 5
 title: Keeping Serverless Functions Warm
-description: A practical pattern for eliminating cold-start latency in serverless integrations with PostalDataPI — including the warmup-signal short-circuit refinement contributed by an early customer.
+description: A practical pattern for eliminating cold-start latency in serverless proxy layers — including the warmup-signal short-circuit refinement contributed by Fungaia Coffee Company. (Note May 2026 status update — no longer needed for PostalDataPI itself.)
 ---
 
 # Keeping Serverless Functions Warm
 
+:::info Status update — May 2026
+
+PostalDataPI's `/api/lookup` and `/api/validate` endpoints now run at the edge and **no longer exhibit cold-start latency** — first-byte times are consistently in the tens-of-milliseconds range globally. You do not need any of the warming patterns below to get fast responses from our API.
+
+The patterns are preserved here because they remain a valuable general technique for handling cold starts in **your own** serverless proxy layer (if your proxy runs on a platform that still exhibits them) — and as a tribute to the engineering Fungaia Coffee Company contributed during their integration.
+
+:::
+
 If you integrate PostalDataPI into a checkout, CRM, or any user-facing form on a serverless platform (Vercel, Netlify, AWS Lambda, Cloudflare Pages with Functions, etc.), you may notice that **the first lookup after a quiet stretch is significantly slower than subsequent ones** — sometimes by 5–15 seconds.
 
-This is not a PostalDataPI-side issue. It's a property of how serverless platforms manage function lifecycles. This guide explains why it happens and gives you two clean patterns for solving it.
+The slowness is almost always in **your own** proxy function's cold start, not in PostalDataPI. This guide explains why it happens and gives you two clean patterns for solving it.
 
 ## What's actually happening
 
@@ -19,11 +27,11 @@ When a customer types a postal code in your form, the request flow looks like:
 ```
 Customer's browser
   → Your /api/postal-lookup proxy function          ← own cold-start lifecycle
-    → PostalDataPI's /api/lookup                    ← own cold-start lifecycle
+    → PostalDataPI's /api/lookup                    ← no cold start (edge)
       → response back through both
 ```
 
-**Both functions have independent cold-start lifecycles.** Even if PostalDataPI's function is warm (we keep ours warm 24/7 via internal cron), *your* proxy function may not be — especially in low-traffic phases like soft launch, after deployments, or during off-hours.
+**Each function has its own cold-start lifecycle.** PostalDataPI's `/api/lookup` and `/api/validate` no longer cold-start (see the status note at the top of this page), but *your* proxy function still might — especially in low-traffic phases like soft launch, after deployments, or during off-hours.
 
 The cold-start cost is overwhelmingly your function's container boot, not the network or our processing. Once your function is warm, the round trip is typically 200–400ms; cold, it can be 5–15 seconds.
 
@@ -91,7 +99,7 @@ Combined with the `useEffect` warm-up on the client, this gives you:
 - ✅ No fake-lookup noise in your application logs
 - ✅ Real customer requests still flow through normally
 
-This is the pattern PostalDataPI uses on our own end — our `GET /api/lookup` is a short-circuit warmer that returns `{"status":"warm"}` without invoking the full POST pipeline (auth, balance check, real lookup). The pattern is symmetric on both sides of any integration.
+The pattern is symmetric on both sides of any integration — if your callers proxy your API, they can short-circuit warm against you, and you can short-circuit warm against your upstream.
 
 > **Credit:** The `warmup: true` short-circuit refinement was contributed by Fungaia Coffee Company's engineering during their PostalDataPI integration. Documented here so other developers can benefit.
 
@@ -106,7 +114,7 @@ Free options:
 - **Cloudflare Workers** — free tier with cron triggers, supports any HTTP method
 - **Your own machine** — a `cron` entry hitting `curl https://yoursite.com/api/postal-lookup -X POST -H "Content-Type: application/json" -d '{"warmup":true}'` every few minutes
 
-PostalDataPI uses external cron from a private workstation to keep our own functions warm 24/7. Independent of any specific platform's warming behavior, this works everywhere.
+External cron is platform-agnostic — if you've ruled out the alternatives above, it works everywhere your proxy is reachable.
 
 ## When *not* to bother with warming
 
