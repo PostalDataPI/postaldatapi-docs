@@ -79,10 +79,10 @@ else:
 
 ## Enrich Address Data
 
-Use `metazip()` to get latitude, longitude, timezone, county, and other metadata. This is useful for shipping calculators, store locators, and analytics.
+Use `metacode()` to get latitude, longitude, timezone, county, and other metadata. This is useful for shipping calculators, store locators, and analytics. (`metazip()` is the deprecated alias kept for backward compatibility.)
 
 ```python
-result = client.metazip("90210")
+result = client.metacode("90210")
 
 print(f"City: {result.city}")
 print(f"Coordinates: {result.latitude}, {result.longitude}")
@@ -116,7 +116,7 @@ postal_codes = ["90210", "10001", "60601", "30301", "98101"]
 
 for code in postal_codes:
     try:
-        result = client.metazip(code)
+        result = client.metacode(code)
         print(f"{code}: {result.city} ({result.latitude}, {result.longitude})")
     except Exception as e:
         print(f"{code}: Error - {e}")
@@ -194,7 +194,7 @@ def check_postal_code():
         return jsonify({"error": "postal_code is required"}), 400
 
     try:
-        result = client.metazip(code, country=country)
+        result = client.metacode(code, country=country)
         return jsonify({
             "valid": True,
             "city": result.city,

@@ -87,10 +87,10 @@ if (await isValidPostalCode(userZip)) {
 
 ## Enrich Address Data
 
-Use `metazip()` to get latitude, longitude, timezone, county, and other metadata.
+Use `metacode()` to get latitude, longitude, timezone, county, and other metadata. (`metazip()` is the deprecated alias kept for backward compatibility.)
 
 ```typescript
-const result = await client.metazip("90210");
+const result = await client.metacode("90210");
 
 console.log(`City: ${result.city}`);
 console.log(`Coordinates: ${result.latitude}, ${result.longitude}`);
@@ -189,7 +189,7 @@ app.post("/api/check-postal-code", async (req, res) => {
   }
 
   try {
-    const result = await client.metazip(postal_code, {
+    const result = await client.metacode(postal_code, {
       country: country.toUpperCase(),
     });
     res.json({

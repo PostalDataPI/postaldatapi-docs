@@ -84,12 +84,14 @@ console.log(result.postalCodes);  // ['90209', '90210', '90211', ...]
 
 **Returns:** `CitySearchResult` with fields: `postalCodes`, `matchedCity`, `matchedState`, `balance`, `raw`
 
-### `client.metazip(postalCode, options?)`
+### `client.metacode(postalCode, options?)`
 
-Returns all available metadata for a postal code.
+Returns all available metadata for a postal code. Brand-neutral method
+name added in SDK v0.3.0. The earlier `client.metazip()` is preserved
+as a deprecated alias — both methods return identical data.
 
 ```typescript
-const result = await client.metazip("90210");
+const result = await client.metacode("90210");
 console.log(result.city);            // Beverly Hills
 console.log(result.postalCode);      // 90210
 console.log(result.latitude);        // 34.1031

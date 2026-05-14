@@ -84,12 +84,14 @@ print(result.postal_codes)  # ['90209', '90210', '90211', ...]
 
 **Returns:** `CitySearchResult` with fields: `postal_codes`, `matched_city`, `matched_state`, `balance`, `raw`
 
-### `client.metazip(postal_code, country=None)`
+### `client.metacode(postal_code, country=None)`
 
-Returns all available metadata for a postal code.
+Returns all available metadata for a postal code. Brand-neutral method
+name added in SDK v0.3.0. The earlier `client.metazip()` is preserved
+as a deprecated alias — both methods return identical data.
 
 ```python
-result = client.metazip("90210")
+result = client.metacode("90210")
 print(result.city)            # Beverly Hills
 print(result.postal_code)     # 90210
 print(result.latitude)        # 34.1031
