@@ -29,7 +29,7 @@ Content-Type: application/json
 {
   "About": "PostalDataPI provides postal code lookup, validation, city search, and metadata endpoints for 240+ countries and territories.",
   "version": "2.0.0",
-  "coverage": "240+ countries and territories with sub-5ms response times. US ZIP codes, UK postcodes, German PLZ, and more.",
+  "coverage": "240+ countries and territories with sub-5ms server response times. US ZIP codes, UK postcodes, German PLZ, and more.",
   "usage": "See docs.postaldatapi.com for authentication, rate limits, and endpoint usage.",
   "performance": { "totalTime": "1ms" },
   "balance": 4.99

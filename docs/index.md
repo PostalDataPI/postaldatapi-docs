@@ -6,12 +6,12 @@ slug: /
 
 # PostalDataPI Documentation
 
-PostalDataPI is a global postal code API covering 240+ countries and territories with sub-5ms response times. Look up, validate, and search postal codes with a simple REST API.
+PostalDataPI is a global postal code API covering 240+ countries and territories with sub-5ms server response times. Look up, validate, and search postal codes with a simple REST API.
 
 ## Why PostalDataPI?
 
 - **Global coverage** -- 240+ countries and territories, from the US to Japan to Germany
-- **Fast** -- Sub-5ms cached response times
+- **Fast** -- Sub-5ms server response times
 - **Simple** -- One flat rate ($0.000028/query), no tiers, no surprises
 - **Free to start** -- 1,000 queries free, no credit card required
 - **Official SDKs** -- Python and Node.js clients available
